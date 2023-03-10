@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scatterplot Graph</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</head>
+<body>
+    <script>
+
+        const req= new XMLHttpRequest();
+        let margin = 50;
+        let width = 920-(2*margin); //920-> svg width
+        let height = 630-(2*margin); //630-> svg height
+
+              req.open("GET",'https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/cyclist-data.json',true);
+              req.send();
+
+              req.onload = function(){
+                const data = JSON.parse(req.responsetext);
+
+             let x= d3
+                .linearScale()
+                .domain([d3.min(data,function(d){ return d.year;}),
+                         d3.max(data,function(d){ return d.year;})])  // year-1 and year+1 ??
+                .range([0,width]);
+                
+             let y=  d3
+                .scaleTime() 
+                .domain(d3.extent(data,function(d){ return d.Time;}))
+                .range([height,0])
+
+             var svg= d3
+                .select("body")
+                .append("svg")
+                .attr("width",width+(2*margin))
+                .attr("height",height+(2*margin))
+                .attr("class","graph")
+
+              };
+    </script>
+</body>
+</html>
