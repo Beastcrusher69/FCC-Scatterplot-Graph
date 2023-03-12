@@ -11,5 +11,8 @@ body{
 
 .canvas{
     background-color: aqua;
+}
 
+#title{
+    font-size:20px;
 }
