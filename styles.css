@@ -10,9 +10,14 @@ body{
 }
 
 .canvas{
-    background-color: aqua;
 }
 
 #title{
     font-size:20px;
+}
+
+#tooltip{
+    visibility: hidden;
+    width:auto;
+    height:auto;
 }
